@@ -1,0 +1,126 @@
+----------------------------------------------------------------
+						DICAS	
+----------------------------------------------------------------
+. Para IMPORT e EXPORT tudo bem deixar os tipos como string, mas para processar dados dentro do programa, indicado deixar o tipo certo.
+	- Para saber o tipo certo: EF | Ve o campo que esta sendo comparado no SELECT(provavelmente será do mesmo tipo) | Em último caso, perguntar para o funcional.
+. Afim de testes, pode deixar um padrão de char.
+. Começar a enxergar pela descrição dos campos, e não pelos campos em si ao ler a EF.
+. Ao usar TYPE, quando for fazer o SELECT para tabela interna com campos selecionados, lembrar de puxar os campos chaves da tabela para seleção completa.
+. Quando precisar de um refresh automatico no ALV ao clicar em um botão no ALV: PERFORM zlh_formdeseleçãodedados -> go_salv_table->refresh( ). "go_salv_table TYPE REF TO cl_salv_table.
+. Quando precisar ver todos os registros da tabela na SE16 mas ultrapassa os limites: Acessa a tabela -> Configurações -> Parametros do usuario -> Mudar para Lista ALV.
+----------------------------------------------------------------
+		           TRANSAÇÕES	
+----------------------------------------------------------------
+
+SE93 - Cria T-Codes para excecutar o programa direto pela barra de comando.
+SM30 - Tabela de visão. Adiciona e Remove registros de uma tabela.
+SM04 - Gestão dos perfis (uso para excluir perfil duplicado).
+SE37 - Cria módulo de função e marca como "Habilitado para Chamada Remota"(Remote-Enabled Module). Oque permite ser chamado por sistemas externos - RFC.
+SM59 - Onde é configurado um "destino RFC".
+SE80 - Criação de Pacotes.
+SE91 - Cria classe de mensagens
+SE78 - Importar imagens do computador para o SAP.
+SE51 - Screen Painter.
+SE41 - Menu Painter(Acesso aos STATUS GUI) - Padrão para cópia: PROGRAMA: SAPLKKBL / STATUS:  STANDARD
+SE14 - Acessar quando for necessário quando fizer uma alteração em algum campo da sua tabela e pedir uma conversão de tabela.
+BAPI - Onde estão todas as BAPIs disponiveis pra uso.
+----------------------------------------------------------------
+			FIELD-SYMBOLS
+----------------------------------------------------------------
+
+<fs_> = field-symbol
+
+----------------------------------------------------------------
+			RSPARAMS
+----------------------------------------------------------------
+
+rsparams = estrutura usada pra ler o select-options de um report
+EX: lt_params_tab TYPE TABLE OF rsparams.
+
+APPEND VALUE #( selname = 'P_ESTR' kind = 'P' sign = 'I' option = 'EQ' low = 'X' ) TO lt_param_tab.
+SUBMIT zmmr299 WITH SELECTION-TABLE lt_param_tab AND RETURN.
+
+KIND = 'S' means select-option
+KIND = 'P' means parameter
+
+----------------------------------------------------------------
+					NOMENCLATURA - OO	
+----------------------------------------------------------------
+
+A primeira letra indica o escopo, exemplos:
+- m: variável de uma classe
+- l: variável local
+- g: variável global
+
+A segunda letra indica o tipo, exemplos:
+- d: dado geral (inteiro, string, char, data etc)
+- t: tabela interna
+- s: estrutura
+- o: objeto
+- y: tipo
+
+Regra especial para parâmetros de método/função/form, na primeira letra:
+- i: Importing
+- e: Exporting
+- c: Changing
+- r: Returning
+- u: Using
+- t: Table
+
+Exemplos concretos:
+- md_: Tipo de dado de uma classe (atributo)
+- id_: Parâmetro de import (dado geral)
+- rd_: Parâmetro de returning (dado geral)
+- mo_: atributo de um objeto 
+- ro_: Parâmetro de returning (objeto)
+
+----------------------------------------------------------------
+				DECLARAÇÕES DE VARIÁVEIS
+----------------------------------------------------------------
+
+- As declarações das variáveis variam de acordo com cada cliente. 
+É entregue um workbook detalhando como aquele cliente prefere as variáveis declaradas.
+
+----------------------------------------------------------------
+						RANGE	
+----------------------------------------------------------------
+Range é uma Tabela Interna com Estrutura Padrão
+
+----------------------------------------------------------------
+					SY-TABIX / SY-INDEX	
+----------------------------------------------------------------
+sy-index - Loops For, Passagem do Loop Atual.
+
+
+sy-tabix - Para tabela interna, Índice da linha atual na tabela interna.
+
+----------------------------------------------------------------
+						  RFC
+----------------------------------------------------------------
+Criando módulo de função - Criar um TIPO DE TABELA para passar nos parametros de importação.
+
+SE11 -> cria tipo de tabela e coloca os registros de item, depois passa pro parametro de importação da função.
+
+----------------------------------------------------------------
+						ATALHOS	
+----------------------------------------------------------------
+
+Ctrl + Y: Pra fazer seleção de vários campos.
+
+----------------------------------------------------------------
+						COMANDOS	
+----------------------------------------------------------------
+INSERT: Usar quando tenho certeza que não tem registros na tabela e quero adicionar novos.
+MODIFY: Usar quando imagino que a tabela esteja preenchida, mas preciso que atualize os valores dos registros.
+
+----------------------------------------------------------------
+						FUNÇÕES
+----------------------------------------------------------------
+BAPI: Usada para fazer alterações nas standards de forma consistente e segura, ao inves de usar comandos de INSERT e MODIFY.
+
+----------------------------------------------------------------
+						TESTES
+----------------------------------------------------------------
+Quando for fazer testes e não tiver dados na tabela:
+	- Entra na SE11, escolhe a tabela -> /h pra entrar no debug -> F8;
+	- No debug Ctrl + F e procura por "edit" -> coloca break-point no refresh e clica F8 -> muda 'code' de "SHOW" pra "EDIT".
