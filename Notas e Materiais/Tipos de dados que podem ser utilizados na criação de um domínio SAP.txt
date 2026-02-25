@@ -1,0 +1,28 @@
+Tipo de dados no ABAP Dictionary
+
+TpD. | Descrição breve
+-----|----------------------------------------------------
+ACCP 	  | Período contábil AAAAMM
+CHAR      | Cadeia de caracteres
+CLNT      | Mandante
+CUKY      | Código da moeda, é referido por campos CURR
+CURR      | Campo de moeda, arquivado como DEC
+DATS      | Campo de data (AAAAMMDD), arquivado como CHAR (8)
+DEC       | Campo de cálculo ou montante com vírgula e sinal +/-
+FLTP      | Número em ponto flutuante com precisão de 8 bytes
+INT1      | Nº inteiro de 1 byte, nº inteiro <= 255
+INT2      | Nº inteiro de 2 bytes, só p/cpo.compr.antes de LCHR ou LRAW
+INT4      | Nº inteiro de 4 bytes, nº inteiro com sinal +/-
+LANG      | Código de idioma
+LCHR      | Seq.longa de caracteres, necessita campo INT2 anterior
+LRAW      | Seq.longa de bytes, necessita campo INT2 anterior
+NUMC      | Cadeia de caracteres só com algarismos
+PREC      | Precisão de um campo QUAN
+QUAN 	  | Campo quantidade, aponta p/campo de unidades de formato UNIT
+RAW       | Sequência de bytes não interpretada
+RAWSTRING | Sequência de bytes de comprimento variável
+SSTRING   | Cadeia de caracteres breve de comprimento variável
+STRING    | Cadeia de caracteres de comprimento variável
+TIMS      | Campo da hora (hhmmss), arquivado como campo de texto (6)
+VARC      | Cad.longa caracteres, já não suport.a partir do release 3.0
+UNIT      | Código de unidades para campos QUAN
