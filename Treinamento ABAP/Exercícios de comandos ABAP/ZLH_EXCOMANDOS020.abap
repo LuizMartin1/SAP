@@ -8,15 +8,11 @@ REPORT ZLH_EX20.
 
 DATA: gv_num TYPE i.
 
-" 1. O NO-EXTENSION remove o botão de ranges múltiplos (o botão no canto direito)
 SELECT-OPTIONS: s_num FOR gv_num NO-EXTENSION.
 
 START-OF-SELECTION.
   PERFORM zlh_imprime_sequencia.
 
-*&---------------------------------------------------------------------*
-*& FORM zlh_imprime_sequencia
-*&---------------------------------------------------------------------*
 FORM zlh_imprime_sequencia.
 
   DATA: lv_primeiro TYPE abap_bool VALUE abap_true,
