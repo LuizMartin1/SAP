@@ -1,3 +1,9 @@
+*&-----------------------------------------------------------------------------*
+*& Estrutura CALL FUNCTION 'L_TO_CONFIRM' - Two steps confirmation
+
+  Usei em um coletor de devolução de produção.
+*&-----------------------------------------------------------------------------*
+
 FORM zlh_armazena_palete.
 
   DATA: w_ltap      TYPE ltap,
