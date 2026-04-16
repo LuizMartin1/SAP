@@ -1,0 +1,36 @@
+Demanda de coletores
+
+FUNÇÕES QUE MAIS USEI: 
+
+. CALL FUNCTION 'L_TO_CREATE_TR': Onde nasce a OT, a partir de um NT já existente
+
+. CALL FUNCTION 'L_TO_CONFIRM': Usada pra confirmar a OT, deixar o status verde, podendo ser consultada na LT21.
+							  No caso de um coletor de devolução de produção que fiz, era necessário a confirmação em duas etapas,
+							  então eram feitas duas chamadas dessa função, a primeira para confirmar a saída da origem(I_QUKNZ = '1') 
+							  e a segunda pra confirmar a entrada no destino(I_QUKNZ = '2').
+						
+
+TRANSAÇÕES QUE MAIS USEI:
+
+. LT21/LT24: Consulta do status da OT.
+
+. SE16N: Usei muito para conferir posições, UD, montagem de novos cenários.
+
+PRINCIPAIS CAMPOS:
+
+. LGNUM: Número de Depósito
+. LENUM: Número da Unidade de Depósito
+. NLPLA: Posição de Destino
+. TANUM: Número da OT
+. TAPOS: Item da OT.
+
+PRINCIPAIS TABELAS:
+
+. lt_ltap_conf: Tabela que vai ser passada na TABLES da função 'L_TO_CONFIRM'. No caso de confirmação de duas etapas, verificar o arquivo .abap L_TO_CONFIRM_2_STEP_CONFIRMATION.abap no meu repositório, lá tem a estrutura de como preecher a tabela.
+. t_lrf_wkqu: Tabela que armazena UNAME(ou USER), LGNUM e STATUS. Aqui descobrimos qual deposito esta ativo para aquele usuario, ponto onde talvez precise alterar o LGNUM caso o funcional passe uma posição que esse usuario nao tem o LGNUM ativo.
+
+
+
+POSSÍVEIS PROBLEMAS QUE PODE ENCONTRAR: 
+
+. Funcional pode passar uma posição de destino que o seu usuario de teste pode não ser liberado pra aquele LGNUM(número do depósito) -> Necessário mudar no debug para prosseguir os testes.
