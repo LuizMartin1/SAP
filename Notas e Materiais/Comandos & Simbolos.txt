@@ -3,10 +3,15 @@
 ----------------------------------------------------------------
 . Para IMPORT e EXPORT tudo bem deixar os tipos como string, mas para processar dados dentro do programa, indicado deixar o tipo certo.
 	- Para saber o tipo certo: EF | Ve o campo que esta sendo comparado no SELECT(provavelmente será do mesmo tipo) | Em último caso, perguntar para o funcional.
+	
 . Afim de testes, pode deixar um padrão de char.
+
 . Começar a enxergar pela descrição dos campos, e não pelos campos em si ao ler a EF.
+
 . Ao usar TYPE, quando for fazer o SELECT para tabela interna com campos selecionados, lembrar de puxar os campos chaves da tabela para seleção completa.
+
 . Quando precisar de um refresh automatico no ALV ao clicar em um botão no ALV: PERFORM zlh_formdeseleçãodedados -> go_salv_table->refresh( ). "go_salv_table TYPE REF TO cl_salv_table.
+
 . Quando precisar ver todos os registros da tabela na SE16 mas ultrapassa os limites: Acessa a tabela -> Configurações -> Parametros do usuario -> Mudar para Lista ALV.
 ----------------------------------------------------------------
 		           TRANSAÇÕES	
@@ -23,7 +28,20 @@ SE78 - Importar imagens do computador para o SAP.
 SE51 - Screen Painter.
 SE41 - Menu Painter(Acesso aos STATUS GUI) - Padrão para cópia: PROGRAMA: SAPLKKBL / STATUS:  STANDARD
 SE14 - Acessar quando for necessário quando fizer uma alteração em algum campo da sua tabela e pedir uma conversão de tabela.
+SE16N - Visão direta do banco de dados. Fundamental para validar se o código "escreveu" certo nas tabelas
+LS01N / LS02N - Create/Change Storage Bin. Onde se cria e altera a posição física
+LS24 - Stock per Material. Mostra onde um material está no armazém. Ótima para ver o "antes e depois" da movimentação.
+LT21 - Display Transfer Order. Exibe o documento final (OT). É a prova de que o processo físico foi autorizado pelo sistema.
 BAPI - Onde estão todas as BAPIs disponiveis pra uso.
+SU20 - Criar campo de autorização
+SU21 - Atualizar/Criar objeto de Autorização e definir atividade.
+PFCG - Atualização de funções (Criar Roles, inserir objetos, definir valor, gerar perfil, atribuir usuario).
+/n/IWFND/MAINT_SERVICE - Ativar e Manter Serviços OData (SAP Gateway).
+XK03 - Exibir Fornecedor.
+XK04 - Modificar Fornecedor.
+SEGW - Utilizada para modelar a estrutura de dados e gerar as classes de serviço que expõem funções do SAP via protocolo OData.
+SHDB - Usada para gravar o passo a passo de uma tela e identificar os nomes técnicos dos campos de tela.
+
 ----------------------------------------------------------------
 			FIELD-SYMBOLS
 ----------------------------------------------------------------
@@ -124,3 +142,15 @@ BAPI: Usada para fazer alterações nas standards de forma consistente e segura,
 Quando for fazer testes e não tiver dados na tabela:
 	- Entra na SE11, escolhe a tabela -> /h pra entrar no debug -> F8;
 	- No debug Ctrl + F e procura por "edit" -> coloca break-point no refresh e clica F8 -> muda 'code' de "SHOW" pra "EDIT".
+	
+	
+----------------------------------------------------------------
+						REQUESTS
+----------------------------------------------------------------
+
+1. Utilitarios -> Versões -> Administrador de versões -> Clica na solicitação da linha ativa 
+2. SE09 -> Marca apenas caixas: Transportes de cópias e Liberado -> Exibir.
+3. Seleciona um transporte de cópia liberado -> Clica em criar ordem -> Volta tela e copia descrição -> Volta pra SE09 e coloca CP no final da descrição
+4. Volta e copia a request -> Volta pra SE09 -> Botao direito na task modificavel -> Incluir objetos -> cola a request -> seleciona e clica no caminhão
+
+ZAPI_MM_FORNECEDOR_SRV

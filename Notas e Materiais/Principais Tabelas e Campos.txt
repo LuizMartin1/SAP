@@ -1,0 +1,48 @@
+PRINCIPAIS TABELAS E CAMPOS
+
+MKPF: Cabeçalho do Documento de Material
+ . MBLNR: número do documento
+ . MJAHR: Ano do documento 
+ . BLART: Tipo do documento
+ . BLDAT: Data do documento
+ . BUDAT: Data de lançamento
+ . USNAM: Nome do usuário.
+ 
+MSEG: Item(segmento) do Documento de Material
+	. MATNR: Código do Material
+	. WERKS: Centro
+	. LGORT: Depósito
+	. BWART: Tipo de movimento
+	. ERFMG: Quantidade
+	. ERFME: Unidade de medida.
+	
+EKKO: Cabeçalho do Pedido de Compra
+	. EBELN: O número do pedido de compra
+	. LIFNR: Código do fornecedor
+	. BSART: Tipo do Pedido.
+	
+EKPO: Item do pedido de compra
+	. EBELP: Número do item
+	. MATNR: ||
+	. MENGE: Quantidade
+	. NETPR: Preço líquido.
+	
+MARA: Dados Gerais do Material	
+	. MATNR: ||
+	. MTART: Tipo de Material
+	. MBRSH: Ramo de atividade
+	. MEINS: Unidade de Medida Básica
+	
+MARC: Dados do Material por Centro
+	. WERKS: Centro
+	. DISMM: Tipo de Planejamento
+	
+MAKT: Descrições do Material
+	. SPRAS: Idioma
+	. MAKTX: Descrição do material.
+	
+LFA1: Dados Gerais (Armazena nome, endereço, CEP, CPF, CNPJ, domicilio fiscal...)
+	. LIFNR: Número do Fornecedor
+	. STCD2: CPF
+	. TXJCD: Domicilio Fiscal
+	. PSTLZ: Código Postal (CEP).
